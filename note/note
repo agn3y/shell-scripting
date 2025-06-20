@@ -97,8 +97,7 @@ expr $a + $b        # Note: spaces are required
 # Comparison Operators (Numbers)
 # -----------------------------
 
-# [ "$a" -eq "$b" ]   → Equal only work for numbers
-# [ "$a" == "$b"  ]   # To compare strings
+# [ "$a" -eq "$b" ]   → Equal (for numbers)
 # [ "$a" -ne "$b" ]   → Not equal
 # [ "$a" -gt "$b" ]   → Greater than
 # [ "$a" -lt "$b" ]   → Less than
@@ -154,7 +153,7 @@ else
 fi
 
 # --- if-elif-else ---
-read -p "Enter your marks here: " Marks
+read -p "Enter your marks again: " Marks
 
 if [[ "$Marks" -ge 80 ]]
 then
@@ -170,14 +169,16 @@ else
 fi
 
 # -----------------------------
-# Case statement with loop and exit option
+# Case Statement with Menu Loop
 # -----------------------------
 
 while true; do
-    echo "a = Press a to check date"
-    echo "b = Press b to get system information"
-    echo "c = Press c to update the system"
+    echo "========== MENU =========="
+    echo "a = Check date"
+    echo "b = System information"
+    echo "c = Update the system"
     echo "q = Quit"
+    echo "=========================="
 
     read -p "Enter your choice: " choice
 
@@ -202,6 +203,14 @@ while true; do
             echo "Wrong input, please try again."
             ;;
     esac
-    echo # empty line for readability
+    echo # Empty line for readability
 done
+
+# -----------------------------
+# Ternary-like Operation
+# -----------------------------
+
+age=18
+
+[[ $age -ge 18 ]] && echo "You can drive" || echo "You can't drive"
 
