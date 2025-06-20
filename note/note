@@ -1,0 +1,5 @@
+Shell scripting Note
+
+# always start script with #!/bin/bash
+# Use # for single line commment
+# Use << >> for multi line comment
