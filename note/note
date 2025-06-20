@@ -1,4 +1,4 @@
-# Always start script with: 
+# Always start script with:
 #!/bin/bash
 
 # Single-line comment starts with #
@@ -9,55 +9,135 @@ This is a
 multi-line comment
 '
 
-#-----------------------------
+# -----------------------------
 # Defining Variables
-#-----------------------------
+# -----------------------------
 
 # No spaces around "="
 Var_name=value
 Var_name=$(command)        # e.g. Var_name=$(date)
 
-$ echo "$Var_name"
+echo "$Var_name"
 
 # Readonly variable
 readonly name="agn3y"      # This value cannot be changed
 
-#-----------------------------
+# -----------------------------
 # Arrays
-#-----------------------------
+# -----------------------------
 
 new_arr=(1 2 3 "name" hello)      # Space-separated, not comma
 new_arr+=(new 1 2 3)              # Append new elements
 
-$ echo "${new_arr[3]}"            # Print value at index 3
-$ echo "${new_arr[*]}"            # Print all array values
-$ echo "${#new_arr[*]}"           # Length of array
-$ echo "${new_arr[*]:2:2}"        # From index 2, print 2 elements
+echo "${new_arr[3]}"             # Print value at index 3
+echo "${new_arr[*]}"             # Print all array values
+echo "${#new_arr[*]}"            # Length of array
+echo "${new_arr[*]:2:2}"         # From index 2, print 2 elements
 
-#-----------------------------
+# -----------------------------
 # Associative Arrays (Key-Value)
-#-----------------------------
+# -----------------------------
 
-declare -A myarray                        		# Declare associative array
-myarray=([name]="agney" [age]=24 [city]="bharuch")  	# Assign values
+declare -A myarray                                  # Declare associative array
+myarray=([name]="agney" [age]=24 [city]="bharuch")  # Assign key-value pairs
 
-$ echo "Name is ${myarray[name]}"          		# Access value by key
+echo "Name is ${myarray[name]}"                     # Access value by key
 
-#-----------------------------
+# -----------------------------
 # String Operations
-#-----------------------------
+# -----------------------------
 
-myvar="hello all black niggers"          # Define string
+myvar="hello all brave warriors"               # Define a sample string
 
-length=${#myvar}                         # Get string length
-upper=${myvar^^}                         # Convert to uppercase
-lower=${myvar,,}                         # Convert to lowercase
-replace=${myvar/all/white}               # Replace word (first match only)
-slice=${myvar:6:11}  			 # Slice 11 chars from index 6 and next 11 chars from it
+length=${#myvar}                               # Get string length
+upper=${myvar^^}                               # Convert to uppercase
+lower=${myvar,,}                               # Convert to lowercase
+replace=${myvar/all/strong}                    # Replace first match of "all" with "strong"
+slice=${myvar:6:11}                            # Slice 11 chars starting from index 6
 
-$ echo "$length"
-$ echo "$upper"
-$ echo "$lower"
-$ echo "$replace"
-$ echo "$slice"
+echo "$length"
+echo "$upper"
+echo "$lower"
+echo "$replace"
+echo "$slice"
+
+# -----------------------------
+# Taking Input from User
+# -----------------------------
+
+read varname                                   # Take input without prompt
+read -p "Your name: " varname                  # Take input with prompt
+
+# -----------------------------
+# Arithmetic Expressions
+# -----------------------------
+
+# Operators:
+# +  = addition
+# -  = subtraction
+# *  = multiplication
+# /  = division (integer only)
+# %  = remainder (modulus)
+
+# Syntax examples:
+
+a=10
+b=3
+
+# Method 1: Using $((...))
+echo $((a + b))     # Sum
+echo $((a - b))     # Subtract
+echo $((a * b))     # Multiply
+echo $((a / b))     # Divide (integer only)
+echo $((a % b))     # Remainder
+
+# Method 2: Using let
+let sum=a+b
+echo $sum
+
+# Method 3: Using expr (older)
+expr $a + $b        # Note: Spaces are important in expr
+
+# Comparison Operators (Numbers)
+
+# | `-eq`    | Equal to         | `[ "$a" -eq "$b" ]` |
+# | `-ne`    | Not equal to     | `[ "$a" -ne "$b" ]` |
+# | `-gt`    | Greater than     | `[ "$a" -gt "$b" ]` |
+# | `-lt`    | Less than        | `[ "$a" -lt "$b" ]` |
+# | `-ge`    | Greater or equal | `[ "$a" -ge "$b" ]` |
+# | `-le`    | Less or equal    | `[ "$a" -le "$b" ]` |
+
+# String Operators
+
+# | `=`      | Equal               | `[ "$a" = "$b" ]`  |
+# | `!=`     | Not equal           | `[ "$a" != "$b" ]` |
+# | `-z`     | String is empty     | `[ -z "$var" ]`    |
+# | `-n`     | String is not empty | `[ -n "$var" ]`    |
+
+# File Test Operators
+
+# | `-f`     | File exists              | `[ -f /path/to/file ]` |
+# | `-d`     | Directory exists         | `[ -d /etc/nginx ]`    |
+# | `-e`     | File or dir exists (any) | `[ -e /path ]`         |
+# | `-s`     | File is not empty        | `[ -s file.log ]`      |
+# | `-r`     | File is readable         | `[ -r file.txt ]`      |
+# | `-w`     | File is writable         | `[ -w file.txt ]`      |
+# | `-x`     | File is executable       | `[ -x script.sh ]`     |
+
+# Assignment Operators
+
+# | `=`      | Assign value | `a=10`  |
+
+# Special & Misc Operators
+#
+# | Operator    | Meaning              | Example                  |            |                |
+# | ----------- | -------------------- | ------------------------ | ---------- | -------------- |
+# | `$(...)`    | Command substitution | `result=$(ls -l)`        |            |                |
+# | `` `...` `` | Same as above        | `` result=`ls -l` ``     |            |                |
+# | \`          | \`                   | Pipe                     | \`cat file | grep "error"\` |
+# | `>`         | Redirect output      | `echo "ok" > file.txt`   |            |                |
+# | `>>`        | Append to file       | `echo "log" >> file.log` |            |                |
+# | `<`         | Input from file      | `sort < file.txt`        |            |                |
+# | `2>`        | Redirect error       | `cmd 2> err.txt`         |            |                |
+# | `&>`        | Redirect stdout+err  | `cmd &> all.txt`         |            |                |
 
