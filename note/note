@@ -1,5 +1,18 @@
 Shell scripting Note
 
-# always start script with #!/bin/bash
+# Always start script with #!/bin/bash
 # Use # for single line commment
-# Use << >> for multi line comment
+# Use << comment for multi line comment
+
+# Defining variables
+#
+# Var_name = value
+# Var_name = $(value)
+# echo $Var_name
+#
+# readonly variable
+# readonly name=agn3y	# value of this can not be modified
+#
+# Array
+# new_arr = [1 2 3 "name" hello]	# space seprated not ,
+# to use it echo "${new_arr[3]}"
