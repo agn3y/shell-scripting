@@ -1,9 +1,13 @@
-# Always start script with:
 #!/bin/bash
+# =============================
+# SHELL SCRIPTING BASICS (DevOps Use)
+# =============================
+
+# -----------------------------
+# Comments
+# -----------------------------
 
 # Single-line comment starts with #
-# Multi-line comments can be done like this:
-
 : '
 This is a
 multi-line comment
@@ -15,12 +19,12 @@ multi-line comment
 
 # No spaces around "="
 Var_name=value
-Var_name=$(command)        # e.g. Var_name=$(date)
+Var_name=$(date)         # Run command and store output
 
 echo "$Var_name"
 
 # Readonly variable
-readonly name="agn3y"      # This value cannot be changed
+readonly name="agn3y"    # This value cannot be changed
 
 # -----------------------------
 # Arrays
@@ -29,31 +33,31 @@ readonly name="agn3y"      # This value cannot be changed
 new_arr=(1 2 3 "name" hello)      # Space-separated, not comma
 new_arr+=(new 1 2 3)              # Append new elements
 
-echo "${new_arr[3]}"             # Print value at index 3
-echo "${new_arr[*]}"             # Print all array values
-echo "${#new_arr[*]}"            # Length of array
-echo "${new_arr[*]:2:2}"         # From index 2, print 2 elements
+echo "${new_arr[3]}"              # Print value at index 3
+echo "${new_arr[*]}"              # Print all array values
+echo "${#new_arr[*]}"             # Length of array
+echo "${new_arr[*]:2:2}"          # From index 2, print 2 elements
 
 # -----------------------------
 # Associative Arrays (Key-Value)
 # -----------------------------
 
-declare -A myarray                                  # Declare associative array
-myarray=([name]="agney" [age]=24 [city]="bharuch")  # Assign key-value pairs
+declare -A myarray                                 
+myarray=([name]="agney" [age]=24 [city]="bharuch")
 
-echo "Name is ${myarray[name]}"                     # Access value by key
+echo "Name is ${myarray[name]}"
 
 # -----------------------------
 # String Operations
 # -----------------------------
 
-myvar="hello all brave warriors"               # Define a sample string
+myvar="hello all brave warriors"
 
-length=${#myvar}                               # Get string length
-upper=${myvar^^}                               # Convert to uppercase
+length=${#myvar}                               # String length
+upper=${myvar^^}                               # Convert to UPPERCASE
 lower=${myvar,,}                               # Convert to lowercase
-replace=${myvar/all/strong}                    # Replace first match of "all" with "strong"
-slice=${myvar:6:11}                            # Slice 11 chars starting from index 6
+replace=${myvar/all/strong}                    # Replace first match
+slice=${myvar:6:11}                            # Slice 11 chars from index 6
 
 echo "$length"
 echo "$upper"
@@ -65,79 +69,139 @@ echo "$slice"
 # Taking Input from User
 # -----------------------------
 
-read varname                                   # Take input without prompt
-read -p "Your name: " varname                  # Take input with prompt
+read varname                          # Take input without prompt
+read -p "Your name: " varname        # Take input with prompt
 
 # -----------------------------
 # Arithmetic Expressions
 # -----------------------------
 
-# Operators:
-# +  = addition
-# -  = subtraction
-# *  = multiplication
-# /  = division (integer only)
-# %  = remainder (modulus)
-
-# Syntax examples:
-
 a=10
 b=3
 
-# Method 1: Using $((...))
-echo $((a + b))     # Sum
-echo $((a - b))     # Subtract
-echo $((a * b))     # Multiply
-echo $((a / b))     # Divide (integer only)
+# Method 1: $((...))
+echo $((a + b))     # Addition
+echo $((a - b))     # Subtraction
+echo $((a * b))     # Multiplication
+echo $((a / b))     # Division (integer)
 echo $((a % b))     # Remainder
 
-# Method 2: Using let
+# Method 2: let
 let sum=a+b
 echo $sum
 
-# Method 3: Using expr (older)
-expr $a + $b        # Note: Spaces are important in expr
+# Method 3: expr (older)
+expr $a + $b        # Note: spaces are required
 
+# -----------------------------
 # Comparison Operators (Numbers)
+# -----------------------------
 
-# | `-eq`    | Equal to         | `[ "$a" -eq "$b" ]` |
-# | `-ne`    | Not equal to     | `[ "$a" -ne "$b" ]` |
-# | `-gt`    | Greater than     | `[ "$a" -gt "$b" ]` |
-# | `-lt`    | Less than        | `[ "$a" -lt "$b" ]` |
-# | `-ge`    | Greater or equal | `[ "$a" -ge "$b" ]` |
-# | `-le`    | Less or equal    | `[ "$a" -le "$b" ]` |
+# [ "$a" -eq "$b" ]   → Equal only work for numbers
+# [ "$a" == "$b"  ]   # To compare strings
+# [ "$a" -ne "$b" ]   → Not equal
+# [ "$a" -gt "$b" ]   → Greater than
+# [ "$a" -lt "$b" ]   → Less than
+# [ "$a" -ge "$b" ]   → Greater or equal
+# [ "$a" -le "$b" ]   → Less or equal
 
+# -----------------------------
 # String Operators
+# -----------------------------
 
-# | `=`      | Equal               | `[ "$a" = "$b" ]`  |
-# | `!=`     | Not equal           | `[ "$a" != "$b" ]` |
-# | `-z`     | String is empty     | `[ -z "$var" ]`    |
-# | `-n`     | String is not empty | `[ -n "$var" ]`    |
+# [ "$a" = "$b" ]     → Equal
+# [ "$a" != "$b" ]    → Not equal
+# [ -z "$a" ]         → Is empty
+# [ -n "$a" ]         → Is not empty
 
+# -----------------------------
 # File Test Operators
+# -----------------------------
 
-# | `-f`     | File exists              | `[ -f /path/to/file ]` |
-# | `-d`     | Directory exists         | `[ -d /etc/nginx ]`    |
-# | `-e`     | File or dir exists (any) | `[ -e /path ]`         |
-# | `-s`     | File is not empty        | `[ -s file.log ]`      |
-# | `-r`     | File is readable         | `[ -r file.txt ]`      |
-# | `-w`     | File is writable         | `[ -w file.txt ]`      |
-# | `-x`     | File is executable       | `[ -x script.sh ]`     |
+# [ -f file ]         → Regular file exists
+# [ -d dir ]          → Directory exists
+# [ -e path ]         → File or directory exists
+# [ -s file ]         → File not empty
+# [ -r file ]         → Readable
+# [ -w file ]         → Writable
+# [ -x file ]         → Executable
 
-# Assignment Operators
+# -----------------------------
+# Special Operators
+# -----------------------------
 
-# | `=`      | Assign value | `a=10`  |
+# $(...)              → Command substitution
+# `...`               → Same as above (older syntax)
+# |                   → Pipe
+# >                   → Redirect output
+# >>                  → Append to file
+# <                   → Input from file
+# 2>                  → Redirect stderr
+# &>                  → Redirect stdout and stderr
 
-# Special & Misc Operators
-#
-# | Operator    | Meaning              | Example                  |            |                |
-# | ----------- | -------------------- | ------------------------ | ---------- | -------------- |
-# | `$(...)`    | Command substitution | `result=$(ls -l)`        |            |                |
-# | `` `...` `` | Same as above        | `` result=`ls -l` ``     |            |                |
-# | \`          | \`                   | Pipe                     | \`cat file | grep "error"\` |
-# | `>`         | Redirect output      | `echo "ok" > file.txt`   |            |                |
-# | `>>`        | Append to file       | `echo "log" >> file.log` |            |                |
-# | `<`         | Input from file      | `sort < file.txt`        |            |                |
-# | `2>`        | Redirect error       | `cmd 2> err.txt`         |            |                |
-# | `&>`        | Redirect stdout+err  | `cmd &> all.txt`         |            |                |
+# -----------------------------
+# Conditional Statements
+# -----------------------------
+
+# --- if-else ---
+read -p "Enter your marks: " Marks
+
+if [[ "$Marks" -gt 40 ]]
+then
+    echo "You have cleared the exam"
+else
+    echo "You did not clear the exam"
+fi
+
+# --- if-elif-else ---
+read -p "Enter your marks here: " Marks
+
+if [[ "$Marks" -ge 80 ]]
+then
+    echo "You have cleared the exam with First Class"
+elif [[ "$Marks" -ge 60 ]]
+then
+    echo "You have achieved Second Class"
+elif [[ "$Marks" -ge 40 ]]
+then
+    echo "You passed with Third Class"
+else
+    echo "You did not clear the exam"
+fi
+
+# -----------------------------
+# Case statement with loop and exit option
+# -----------------------------
+
+while true; do
+    echo "a = Press a to check date"
+    echo "b = Press b to get system information"
+    echo "c = Press c to update the system"
+    echo "q = Quit"
+
+    read -p "Enter your choice: " choice
+
+    case $choice in
+        a)
+            echo "Date and time:"
+            date
+            ;;
+        b)
+            echo "System information:"
+            uname -a
+            ;;
+        c)
+            echo "Updating system..."
+            sudo apt update -y
+            ;;
+        q)
+            echo "Exiting script."
+            break
+            ;;
+        *)
+            echo "Wrong input, please try again."
+            ;;
+    esac
+    echo # empty line for readability
+done
 
