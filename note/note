@@ -14,7 +14,7 @@ Shell scripting Note
 # readonly name=agn3y			# value of this can not be modified
 #
 # Array
-# new_arr=(1 2 3 "name" hello)	# space seprated not ,
+# new_arr=(1 2 3 "name" hello)		# space seprated not ,
 # echo "${new_arr[3]}"			# print only 3rd value
 # echo "${new_aarr[*]}"			# print all values in array
 # echo "${#new_arr[*]}"			# to get length of array
