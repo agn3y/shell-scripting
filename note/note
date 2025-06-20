@@ -1,21 +1,63 @@
-Shell scripting Note
+# Always start script with: 
+#!/bin/bash
 
-# Always start script with #!/bin/bash
-# Use # for single line commment
-# Use << comment for multi line comment
+# Single-line comment starts with #
+# Multi-line comments can be done like this:
 
-# Defining variables
-#
-# Var_name = value
-# Var_name = $(value)
-# echo $Var_name
-#
-# readonly variable
-# readonly name=agn3y			# value of this can not be modified
-#
-# Array
-# new_arr=(1 2 3 "name" hello)		# space seprated not ,
-# echo "${new_arr[3]}"			# print only 3rd value
-# echo "${new_aarr[*]}"			# print all values in array
-# echo "${#new_arr[*]}"			# to get length of array
-# echo "${new_arr[*]:2:2}"		# from 2nd position to next 2 values
+: '
+This is a
+multi-line comment
+'
+
+#-----------------------------
+# Defining Variables
+#-----------------------------
+
+# No spaces around "="
+Var_name=value
+Var_name=$(command)        # e.g. Var_name=$(date)
+
+$ echo "$Var_name"
+
+# Readonly variable
+readonly name="agn3y"      # This value cannot be changed
+
+#-----------------------------
+# Arrays
+#-----------------------------
+
+new_arr=(1 2 3 "name" hello)      # Space-separated, not comma
+new_arr+=(new 1 2 3)              # Append new elements
+
+$ echo "${new_arr[3]}"            # Print value at index 3
+$ echo "${new_arr[*]}"            # Print all array values
+$ echo "${#new_arr[*]}"           # Length of array
+$ echo "${new_arr[*]:2:2}"        # From index 2, print 2 elements
+
+#-----------------------------
+# Associative Arrays (Key-Value)
+#-----------------------------
+
+declare -A myarray                        		# Declare associative array
+myarray=([name]="agney" [age]=24 [city]="bharuch")  	# Assign values
+
+$ echo "Name is ${myarray[name]}"          		# Access value by key
+
+#-----------------------------
+# String Operations
+#-----------------------------
+
+myvar="hello all black niggers"          # Define string
+
+length=${#myvar}                         # Get string length
+upper=${myvar^^}                         # Convert to uppercase
+lower=${myvar,,}                         # Convert to lowercase
+replace=${myvar/all/white}               # Replace word (first match only)
+slice=${myvar:6:11}  			 # Slice 11 chars from index 6 and next 11 chars from it
+
+$ echo "$length"
+$ echo "$upper"
+$ echo "$lower"
+$ echo "$replace"
+$ echo "$slice"
+
