@@ -214,3 +214,35 @@ age=18
 
 [[ $age -ge 18 ]] && echo "You can drive" || echo "You can't drive"
 
+
+# --------
+# for loops
+# --------
+#
+# for i in 1 2 3 4 5
+# do 
+# 	echo "Number is $i"
+# done
+#
+# -------
+#
+# or we can use 
+#
+# for i in raju sham baburao
+#
+# -------
+#
+# or we can use 
+#
+# for i in {1..10}
+#
+# ---------------
+#
+# using for loop with file
+#
+# FILE=/home/agn3y/shell-scripting/names
+#
+# for name in $(cat $FILE)
+# do 
+# 	echo "Name is $name"
+# done
