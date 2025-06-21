@@ -303,3 +303,93 @@ welcome() {
 welcome anirudh 24
 welcome agney 23
 
+
+# Runtime agruments using
+
+myfunc(){
+	echo "i love $1"
+	echo "ilove your mom's $2"
+}
+
+myfunc
+
+# now use this from terminal like ./bash.sh arg1 arg2
+# to access all the arguments at once we can use something like
+echo "To see all arguments use $@"
+
+# to see number of arguments 
+echo "to see number of arguments we can use $#"
+
+
+# using arguments in for loop
+
+for filename in $@
+do 
+	echo "Copying file - $filename"
+done
+
+# shifting arguments
+echo "creating user"
+echo "username is $1"
+
+shift
+echo "Descrption is $@"
+
+
+# keywords
+
+1.break 
+
+no=7
+for i in 1 2 3 4 5 6 7 8 9 
+do 
+	if [[ $i -eq 6]]
+	then
+		echo "$no is found!!"
+		break
+	fi
+done
+
+2.continue
+
+for i in 1 2 3 4 5 6 7 8 9
+do 
+	let n=i%2
+	if [[ $n -eq 0 ]]
+	then 
+		continue
+	fi
+	echo "odd number is $i"
+done
+
+3.exit
+
+# to stop execution of script
+
+if [[ $# -eq 0 ]]
+then 
+	echo "no arguments were passed"
+	exit
+fi
+
+# checking exit status
+
+$? ## use this 
+echo $?
+
+
+# some more things which can be helpfull
+
+1. basename
+
+$ basename /home/agn3y/brainstack/filename.txt
+# return filename.txt
+
+2. dirname
+
+$ dirname /home/agn3y/brainstack/Linux
+# return Linux
+
+3.realpath 
+
+$ realpath filename		# gives you path of file
