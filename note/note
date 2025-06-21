@@ -413,3 +413,13 @@ then
 else
 	echo "permission not granted"
 fi
+
+# using dev null
+#
+# we can redirect the output to /dev/null
+cd /root/ &> /dev/null
+
+## rare thing to see 
+## print name of the script
+
+echo "the name of the script is : ${0}"
