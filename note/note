@@ -393,3 +393,23 @@ $ dirname /home/agn3y/brainstack/Linux
 3.realpath 
 
 $ realpath filename		# gives you path of file
+
+## check file and folder exist or not
+
+if [[ -d folder_name ]]		# if folder exist
+[ ! -d folder_name]		# if folder does not exist
+
+if [ -f file_name ]		# if file exist
+if [ ! -f file_name ]		# if file dont exist
+
+4.RANDOM			# generates a random integer number between 1 to 32767
+5.UID 				# user id of the user logged in
+
+# MAKE SCRIPT WHICH CHEKS IF USER IS ROOT USER OR NOT
+
+if [[ $UID -eq 0 ]]
+then 
+	echo "permission granted"
+else
+	echo "permission not granted"
+fi
