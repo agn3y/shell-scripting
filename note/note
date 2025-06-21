@@ -7,7 +7,7 @@
 # Comments
 # -----------------------------
 
-# Single-line comment starts with #
+# Single-line comment
 : '
 This is a
 multi-line comment
@@ -17,26 +17,23 @@ multi-line comment
 # Defining Variables
 # -----------------------------
 
-# No spaces around "="
 Var_name=value
 Var_name=$(date)         # Run command and store output
-
 echo "$Var_name"
 
-# Readonly variable
 readonly name="agn3y"    # This value cannot be changed
 
 # -----------------------------
 # Arrays
 # -----------------------------
 
-new_arr=(1 2 3 "name" hello)      # Space-separated, not comma
-new_arr+=(new 1 2 3)              # Append new elements
+new_arr=(1 2 3 "name" hello)
+new_arr+=(new 1 2 3)
 
-echo "${new_arr[3]}"              # Print value at index 3
-echo "${new_arr[*]}"              # Print all array values
-echo "${#new_arr[*]}"             # Length of array
-echo "${new_arr[*]:2:2}"          # From index 2, print 2 elements
+echo "${new_arr[3]}"
+echo "${new_arr[*]}"
+echo "${#new_arr[*]}"
+echo "${new_arr[*]:2:2}"
 
 # -----------------------------
 # Associative Arrays (Key-Value)
@@ -44,7 +41,6 @@ echo "${new_arr[*]:2:2}"          # From index 2, print 2 elements
 
 declare -A myarray                                 
 myarray=([name]="agney" [age]=24 [city]="bharuch")
-
 echo "Name is ${myarray[name]}"
 
 # -----------------------------
@@ -53,11 +49,11 @@ echo "Name is ${myarray[name]}"
 
 myvar="hello all brave warriors"
 
-length=${#myvar}                               # String length
-upper=${myvar^^}                               # Convert to UPPERCASE
-lower=${myvar,,}                               # Convert to lowercase
-replace=${myvar/all/strong}                    # Replace first match
-slice=${myvar:6:11}                            # Slice 11 chars from index 6
+length=${#myvar}
+upper=${myvar^^}
+lower=${myvar,,}
+replace=${myvar/all/strong}
+slice=${myvar:6:11}
 
 echo "$length"
 echo "$upper"
@@ -69,8 +65,8 @@ echo "$slice"
 # Taking Input from User
 # -----------------------------
 
-read varname                          # Take input without prompt
-read -p "Your name: " varname        # Take input with prompt
+read varname
+read -p "Your name: " varname
 
 # -----------------------------
 # Arithmetic Expressions
@@ -79,90 +75,81 @@ read -p "Your name: " varname        # Take input with prompt
 a=10
 b=3
 
-# Method 1: $((...))
-echo $((a + b))     # Addition
-echo $((a - b))     # Subtraction
-echo $((a * b))     # Multiplication
-echo $((a / b))     # Division (integer)
-echo $((a % b))     # Remainder
+echo $((a + b))
+echo $((a - b))
+echo $((a * b))
+echo $((a / b))
+echo $((a % b))
 
-# Method 2: let
 let sum=a+b
 echo $sum
 
-# Method 3: expr (older)
-expr $a + $b        # Note: spaces are required
+expr $a + $b
 
 # -----------------------------
 # Comparison Operators (Numbers)
 # -----------------------------
 
-# [ "$a" -eq "$b" ]   → Equal (for numbers)
-# [ "$a" -ne "$b" ]   → Not equal
-# [ "$a" -gt "$b" ]   → Greater than
-# [ "$a" -lt "$b" ]   → Less than
-# [ "$a" -ge "$b" ]   → Greater or equal
-# [ "$a" -le "$b" ]   → Less or equal
+# [ "$a" -eq "$b" ]
+# [ "$a" -ne "$b" ]
+# [ "$a" -gt "$b" ]
+# [ "$a" -lt "$b" ]
+# [ "$a" -ge "$b" ]
+# [ "$a" -le "$b" ]
 
 # -----------------------------
 # String Operators
 # -----------------------------
 
-# [ "$a" = "$b" ]     → Equal
-# [ "$a" != "$b" ]    → Not equal
-# [ -z "$a" ]         → Is empty
-# [ -n "$a" ]         → Is not empty
+# [ "$a" = "$b" ]
+# [ "$a" != "$b" ]
+# [ -z "$a" ]
+# [ -n "$a" ]
 
 # -----------------------------
 # File Test Operators
 # -----------------------------
 
-# [ -f file ]         → Regular file exists
-# [ -d dir ]          → Directory exists
-# [ -e path ]         → File or directory exists
-# [ -s file ]         → File not empty
-# [ -r file ]         → Readable
-# [ -w file ]         → Writable
-# [ -x file ]         → Executable
+# [ -f file ]
+# [ -d dir ]
+# [ -e path ]
+# [ -s file ]
+# [ -r file ]
+# [ -w file ]
+# [ -x file ]
 
 # -----------------------------
 # Special Operators
 # -----------------------------
 
-# $(...)              → Command substitution
-# `...`               → Same as above (older syntax)
-# |                   → Pipe
-# >                   → Redirect output
-# >>                  → Append to file
-# <                   → Input from file
-# 2>                  → Redirect stderr
-# &>                  → Redirect stdout and stderr
+# $(...)     → Command substitution
+# `...`      → Old syntax
+# |          → Pipe
+# >          → Redirect output
+# >>         → Append to file
+# <          → Input from file
+# 2>         → Redirect stderr
+# &>         → Redirect stdout and stderr
 
 # -----------------------------
 # Conditional Statements
 # -----------------------------
 
-# --- if-else ---
 read -p "Enter your marks: " Marks
 
-if [[ "$Marks" -gt 40 ]]
-then
+if [[ "$Marks" -gt 40 ]]; then
     echo "You have cleared the exam"
 else
     echo "You did not clear the exam"
 fi
 
-# --- if-elif-else ---
 read -p "Enter your marks again: " Marks
 
-if [[ "$Marks" -ge 80 ]]
-then
+if [[ "$Marks" -ge 80 ]]; then
     echo "You have cleared the exam with First Class"
-elif [[ "$Marks" -ge 60 ]]
-then
+elif [[ "$Marks" -ge 60 ]]; then
     echo "You have achieved Second Class"
-elif [[ "$Marks" -ge 40 ]]
-then
+elif [[ "$Marks" -ge 40 ]]; then
     echo "You passed with Third Class"
 else
     echo "You did not clear the exam"
@@ -183,27 +170,13 @@ while true; do
     read -p "Enter your choice: " choice
 
     case $choice in
-        a)
-            echo "Date and time:"
-            date
-            ;;
-        b)
-            echo "System information:"
-            uname -a
-            ;;
-        c)
-            echo "Updating system..."
-            sudo apt update -y
-            ;;
-        q)
-            echo "Exiting script."
-            break
-            ;;
-        *)
-            echo "Wrong input, please try again."
-            ;;
+        a) date ;;
+        b) uname -a ;;
+        c) sudo apt update -y ;;
+        q) break ;;
+        *) echo "Wrong input, please try again." ;;
     esac
-    echo # Empty line for readability
+    echo
 done
 
 # -----------------------------
@@ -211,137 +184,122 @@ done
 # -----------------------------
 
 age=18
-
 [[ $age -ge 18 ]] && echo "You can drive" || echo "You can't drive"
 
+# -----------------------------
+# For Loops
+# -----------------------------
 
-# --------
-# for loops
-# --------
-#
-# for i in 1 2 3 4 5
-# do 
-# 	echo "Number is $i"
-# done
-#
-# -------
-#
-# or we can use 
-#
-# for i in raju sham baburao
-#
-# -------
-#
-# or we can use 
-#
-# for i in {1..10}
-#
-# ---------------
-#
-# using for loop with file
-#
-# FILE=/home/agn3y/shell-scripting/names
-#
-# for name in $(cat $FILE)
-# do 
-# 	echo "Name is $name"
-# done
-#
-#---------------------------
-# using for loop with array
-#---------------------------
-#
-# myarray=( 1 2 3 4 5 6 hello  notty )
-# length=${#myarrar}
-#
-# for (( i=0;i<length;i++ ))
-# do
-# echo "value is ${myarray}"
-# done
-#
-#-----------
-# while loop
-#-----------
-#
-#count=0
-#num=10
-#
-#while [[ $count -le num ]]
-#do 
-#	echo "Number are $count"
-#	let count++
-#done
-#
-#---------------------
-#while loop with file
-#---------------------
-#
-#while read myvar
-#do
-#	echo "value from file is $myvar"
-#done
-#
-#------------
-# untill loop
-#------------
-#
-#a=10
-#until [$a -eq 1]
-#do
-#	echo $a
-#	a='expr $a -1'
-#done
-#
-#opposite of what while loop does
-#---------------
-# infinite loop
-# -------------
-#
-# while true 
-# do 
-# 	echo "hii"
-# 	sleep 2
-# done
-#
-# running this loop using for loop
-#
-# for (( ;; ))
-# do 
-# echo "Hi buddy"
-# sleep
-# done < name.txt
-#
-# ----------------------------
-# retriving data from csv file
-# ----------------------------
-#
-# while IFS="," read field1 field2 field3
-# do 
-#  	echo $field1
-#  	echo $field2
-#  	echo $field3
-# done < file_name.csv
-#
-# More advanced example
-#
-# cat file.csv | awk 'NR!=1 {print} | while IFS="," read id name age
-# do 
-# 	echo "Id is $id"
-# done
-#
-# ---------
-# functions
-#----------
-# function hellomessage {
-# 	echo "hello my nigga"
-# }
-#
-# hellomessage		# to call the function
-#
-# secong way
-#
-# hellomessage(){
-# 	echo "hello my son"
-# }
-#
-# hellomessage
+for i in 1 2 3 4 5; do 
+    echo "Number is $i"
+done
+
+for i in raju sham baburao; do
+    echo "$i"
+done
+
+for i in {1..10}; do
+    echo "$i"
+done
+
+# -----------------------------
+# For Loop with File
+# -----------------------------
+
+FILE=/home/agn3y/shell-scripting/names
+for name in $(cat "$FILE"); do 
+    echo "Name is $name"
+done
+
+# -----------------------------
+# For Loop with Array
+# -----------------------------
+
+myarray=(1 2 3 4 5 6 hello notty)
+length=${#myarray[@]}
+
+for (( i=0; i<length; i++ )); do
+    echo "value is ${myarray[i]}"
+done
+
+# -----------------------------
+# While Loop
+# -----------------------------
+
+count=0
+num=10
+
+while [[ $count -le $num ]]; do 
+    echo "Number is $count"
+    ((count++))
+done
+
+# -----------------------------
+# While Loop with File
+# -----------------------------
+
+while read myvar; do
+    echo "value from file is $myvar"
+done < "$FILE"
+
+# -----------------------------
+# Until Loop
+# -----------------------------
+
+a=10
+until [ $a -eq 1 ]; do
+    echo "$a"
+    a=$(expr $a - 1)
+done
+
+# -----------------------------
+# Infinite Loops
+# -----------------------------
+
+# While loop version
+while true; do 
+    echo "Hi"
+    sleep 2
+done
+
+# For loop version
+for (( ;; )); do 
+    echo "Hi buddy"
+    sleep 2
+done
+
+# -----------------------------
+# Reading CSV
+# -----------------------------
+
+while IFS="," read field1 field2 field3; do 
+    echo "$field1"
+    echo "$field2"
+    echo "$field3"
+done < file_name.csv
+
+# Skip header and read CSV
+tail -n +2 file.csv | while IFS="," read id name age; do 
+    echo "Id is $id"
+done
+
+# -----------------------------
+# Functions
+# -----------------------------
+
+hellomessage() {
+    echo "Hello"
+}
+hellomessage
+
+# -----------------------------
+# Functions with Arguments
+# -----------------------------
+
+welcome() {
+    echo "My name is $1"
+    echo "My age is $2"
+}
+welcome anirudh 24
+welcome agney 23
+
