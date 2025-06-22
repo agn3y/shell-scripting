@@ -39,7 +39,7 @@ echo "${new_arr[*]:2:2}"
 # Associative Arrays (Key-Value)
 # -----------------------------
 
-declare -A myarray                                 
+declare -A myarray
 myarray=([name]="agney" [age]=24 [city]="bharuch")
 echo "Name is ${myarray[name]}"
 
@@ -65,7 +65,6 @@ echo "$slice"
 # Taking Input from User
 # -----------------------------
 
-read varname
 read -p "Your name: " varname
 
 # -----------------------------
@@ -82,7 +81,7 @@ echo $((a / b))
 echo $((a % b))
 
 let sum=a+b
-echo $sum
+echo "$sum"
 
 expr $a + $b
 
@@ -90,46 +89,46 @@ expr $a + $b
 # Comparison Operators (Numbers)
 # -----------------------------
 
-# [ "$a" -eq "$b" ]
-# [ "$a" -ne "$b" ]
-# [ "$a" -gt "$b" ]
-# [ "$a" -lt "$b" ]
-# [ "$a" -ge "$b" ]
-# [ "$a" -le "$b" ]
+# [ "$a" -eq "$b" ]    # equal
+# [ "$a" -ne "$b" ]    # not equal
+# [ "$a" -gt "$b" ]    # greater than
+# [ "$a" -lt "$b" ]    # less than
+# [ "$a" -ge "$b" ]    # greater or equal
+# [ "$a" -le "$b" ]    # less or equal
 
 # -----------------------------
 # String Operators
 # -----------------------------
 
-# [ "$a" = "$b" ]
-# [ "$a" != "$b" ]
-# [ -z "$a" ]
-# [ -n "$a" ]
+# [ "$a" = "$b" ]      # equal
+# [ "$a" != "$b" ]     # not equal
+# [ -z "$a" ]          # is empty
+# [ -n "$a" ]          # is not empty
 
 # -----------------------------
 # File Test Operators
 # -----------------------------
 
-# [ -f file ]
-# [ -d dir ]
-# [ -e path ]
-# [ -s file ]
-# [ -r file ]
-# [ -w file ]
-# [ -x file ]
+# [ -f file ]          # file exists and is regular file
+# [ -d dir ]           # directory exists
+# [ -e path ]          # file/directory exists
+# [ -s file ]          # file is not empty
+# [ -r file ]          # file is readable
+# [ -w file ]          # file is writable
+# [ -x file ]          # file is executable
 
 # -----------------------------
 # Special Operators
 # -----------------------------
 
 # $(...)     → Command substitution
-# `...`      → Old syntax
+# `...`      → Old syntax for command substitution
 # |          → Pipe
 # >          → Redirect output
 # >>         → Append to file
 # <          → Input from file
 # 2>         → Redirect stderr
-# &>         → Redirect stdout and stderr
+# &>         → Redirect both stdout and stderr
 
 # -----------------------------
 # Conditional Statements
@@ -257,16 +256,16 @@ done
 # -----------------------------
 
 # While loop version
-while true; do 
-    echo "Hi"
-    sleep 2
-done
+# while true; do 
+#     echo "Hi"
+#     sleep 2
+# done
 
 # For loop version
-for (( ;; )); do 
-    echo "Hi buddy"
-    sleep 2
-done
+# for (( ;; )); do 
+#     echo "Hi buddy"
+#     sleep 2
+# done
 
 # -----------------------------
 # Reading CSV
@@ -303,123 +302,139 @@ welcome() {
 welcome anirudh 24
 welcome agney 23
 
-
-# Runtime agruments using
+# Runtime arguments usage
 
 myfunc(){
-	echo "i love $1"
-	echo "ilove your mom's $2"
+    echo "I love $1"
+    echo "I love your mom's $2"
 }
 
-myfunc
+myfunc "$1" "$2"
 
-# now use this from terminal like ./bash.sh arg1 arg2
-# to access all the arguments at once we can use something like
-echo "To see all arguments use $@"
+# To access all arguments
+echo "All arguments: $@"
 
-# to see number of arguments 
-echo "to see number of arguments we can use $#"
+# Count of arguments
+echo "Argument count: $#"
 
+# -----------------------------
+# For loop using arguments
+# -----------------------------
 
-# using arguments in for loop
-
-for filename in $@
-do 
-	echo "Copying file - $filename"
+for filename in "$@"; do 
+    echo "Copying file - $filename"
 done
 
-# shifting arguments
-echo "creating user"
-echo "username is $1"
+# -----------------------------
+# shift command
+# -----------------------------
+
+echo "Creating user"
+echo "Username is $1"
 
 shift
-echo "Descrption is $@"
+echo "Description is $@"
 
-
-# keywords
-
-1.break 
+# -----------------------------
+# break keyword
+# -----------------------------
 
 no=7
-for i in 1 2 3 4 5 6 7 8 9 
-do 
-	if [[ $i -eq 6]]
-	then
-		echo "$no is found!!"
-		break
-	fi
+for i in 1 2 3 4 5 6 7 8 9; do 
+    if [[ $i -eq 6 ]]; then
+        echo "$no is found!!"
+        break
+    fi
 done
 
-2.continue
+# -----------------------------
+# continue keyword
+# -----------------------------
 
-for i in 1 2 3 4 5 6 7 8 9
-do 
-	let n=i%2
-	if [[ $n -eq 0 ]]
-	then 
-		continue
-	fi
-	echo "odd number is $i"
+for i in 1 2 3 4 5 6 7 8 9; do 
+    let n=i%2
+    if [[ $n -eq 0 ]]; then 
+        continue
+    fi
+    echo "Odd number is $i"
 done
 
-3.exit
+# -----------------------------
+# exit keyword
+# -----------------------------
 
-# to stop execution of script
-
-if [[ $# -eq 0 ]]
-then 
-	echo "no arguments were passed"
-	exit
+if [[ $# -eq 0 ]]; then 
+    echo "No arguments were passed"
+    exit
 fi
 
+# -----------------------------
 # checking exit status
+# -----------------------------
 
-$? ## use this 
-echo $?
+# use immediately after a command
+some_command
+echo "Exit code: $?"
 
+# -----------------------------
+# Useful Commands
+# -----------------------------
 
-# some more things which can be helpfull
+# 1. basename
+basename /home/agn3y/brainstack/filename.txt    # → filename.txt
 
-1. basename
+# 2. dirname
+dirname /home/agn3y/brainstack/Linux             # → /home/agn3y/brainstack
 
-$ basename /home/agn3y/brainstack/filename.txt
-# return filename.txt
+# 3. realpath
+realpath filename                                # → Absolute path
 
-2. dirname
+# -----------------------------
+# File/Directory existence checks
+# -----------------------------
 
-$ dirname /home/agn3y/brainstack/Linux
-# return Linux
-
-3.realpath 
-
-$ realpath filename		# gives you path of file
-
-## check file and folder exist or not
-
-if [[ -d folder_name ]]		# if folder exist
-[ ! -d folder_name]		# if folder does not exist
-
-if [ -f file_name ]		# if file exist
-if [ ! -f file_name ]		# if file dont exist
-
-4.RANDOM			# generates a random integer number between 1 to 32767
-5.UID 				# user id of the user logged in
-
-# MAKE SCRIPT WHICH CHEKS IF USER IS ROOT USER OR NOT
-
-if [[ $UID -eq 0 ]]
-then 
-	echo "permission granted"
-else
-	echo "permission not granted"
+if [[ -d folder_name ]]; then     # Folder exists
+    echo "Folder exists"
 fi
 
-# using dev null
-#
-# we can redirect the output to /dev/null
-cd /root/ &> /dev/null
+if [[ ! -d folder_name ]]; then   # Folder does not exist
+    echo "Folder does not exist"
+fi
 
-## rare thing to see 
-## print name of the script
+if [[ -f file_name ]]; then       # File exists
+    echo "File exists"
+fi
 
-echo "the name of the script is : ${0}"
+if [[ ! -f file_name ]]; then     # File does not exist
+    echo "File does not exist"
+fi
+
+# -----------------------------
+# Random and UID
+# -----------------------------
+
+echo "$RANDOM"     # Random number (1–32767)
+echo "$UID"        # Current user ID
+
+# -----------------------------
+# Root User Check
+# -----------------------------
+
+if [[ $UID -eq 0 ]]; then 
+    echo "Permission granted (Root user)"
+else
+    echo "Permission not granted (Not root)"
+fi
+
+# -----------------------------
+# /dev/null Example
+# -----------------------------
+
+cd /root/ &> /dev/null   # Suppress output and errors
+
+# -----------------------------
+# Print Script Name
+# -----------------------------
+
+echo "The name of the script is: ${0}"
+
