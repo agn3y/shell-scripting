@@ -1,0 +1,19 @@
+# we can automate things using bash scripts
+# we will use at and crontab for this
+
+# when the job is need to be done only once in such cases we can use at command
+
+at 12:09 PM
+	echo "Your mom is a whore"
+ctrl + d
+
+# use atq to check scheduled job
+# to remove the scheduled job
+
+atrm <id>
+
+# now to when we want to make changes or execution which needs to be done regularly we can use this commands
+
+crontab -l 		# to list all the crontab jobs
+crontab -e 		# adds new job
+			# use crontab.guru
