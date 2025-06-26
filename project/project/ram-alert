@@ -1,0 +1,11 @@
+#!/bin/bash
+
+FU=$(df -H | egrep -v "Filesystem|tmpfs" | grep "sda1" | awk '{print $5}' | tr -d %)
+TO="gameingdummy2@gmail.com"
+
+if [[ $FU -gt 20 ]]
+then 
+	echo "Warning, disk memory is low - $FU %" | mail -s "Disk Space alert!!!!" $TO
+else
+	echo "All good"
+fi
